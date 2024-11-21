@@ -1,0 +1,56 @@
+//implementaion of policemen catch theives problem
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+    int n, k;
+    cout << "Enter Total Number of Policemen & Thieves in the Array: ";
+    cin >> n;
+
+    char arr[n];
+    cout << "Enter the Policemen (P) & Thieves (T): ";
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    cout << "Enter the Distance: ";
+    cin >> k;
+
+    int pairs = 0; //for tracking the count of theives
+
+    for (int i = 0; i < n; i++) 
+	{
+        if (arr[i] == 'P') {
+            for (int j = 0; j < n; j++) 
+			{
+                if (arr[j] == 'T') 
+				{
+                    // Check if the policeman and thief are within the allowed distance
+                    if (i > j) 
+					{
+                        if (i - j <= k) 
+						{
+                            pairs++;
+                            arr[j] = 'C'; // Mark thief as caught
+                            break;
+                        }
+                    } 
+					else 
+					{
+                        if (j - i <= k) 
+						{
+                            pairs++;
+                            arr[j] = 'C'; // Mark thief as caught
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    cout << "Maximum Number of Theives Caught : " << pairs << endl;
+
+    return 0;
+}
